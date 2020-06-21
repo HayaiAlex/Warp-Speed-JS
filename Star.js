@@ -1,7 +1,7 @@
 
 class Star {
-
     constructor() {
+        this.r = 16
         this.x = random(width/2, -width/2)
         this.y = random(height/2, -height/2)
         this.z = random(width, 0)
@@ -25,23 +25,22 @@ class Star {
 
     show() {
         fill(255)
-        no_stroke()
+        noStroke()
 
-        sx = map(self.x / self.z, (0, 1), (0, width))
-        sy = map(self.y / self.z, (0, 1), (0, height))
-        sr = map(self.z, (0, width), (self.r, 0))
+        let sx = map(this.x / this.z, 0, 1, 0, width)
+        let sy = map(this.y / this.z, 0, 1, 0, height)
+        let sr = map(this.z, 0, width, this.r, 0)
 
-        circle((sx, sy), sr)
+        circle(sx, sy, sr)
 
 
-        self.pz = this.z
+        this.pz = this.z
 
         stroke(255)
         if (sx != this.px) {
-            line((sx, sy), (self.px, self.py))
+            line(sx, sy, this.px, this.py)
             this.px = sx
             this.py = sy
         }
     }
 }
-star.r = 16
